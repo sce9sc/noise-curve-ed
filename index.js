@@ -17,17 +17,22 @@ module.exports = {
 }
 
 function generateKeyPair (privKey) {
-  const keyPair = {}
+  if (privKey) return generateSeedKeyPair(privKey.subarray(0, 32))
 
+  const keyPair = {}
   keyPair.secretKey = Buffer.alloc(SKLEN)
   keyPair.publicKey = Buffer.alloc(PKLEN)
 
-  if (privKey) {
-    sodium.crypto_sign_seed_keypair(keyPair.publicKey, keyPair.secretKey, privKey.subarray(0, 32))
-  } else {
-    sodium.crypto_sign_keypair(keyPair.publicKey, keyPair.secretKey)
-  }
+  sodium.crypto_sign_keypair(keyPair.publicKey, keyPair.secretKey)
+  return keyPair
+}
 
+function generateSeedKeyPair (seed) {
+  const keyPair = {}
+  keyPair.secretKey = Buffer.alloc(SKLEN)
+  keyPair.publicKey = Buffer.alloc(PKLEN)
+
+  sodium.crypto_sign_seed_keypair(keyPair.publicKey, keyPair.secretKey, seed)
   return keyPair
 }
 
