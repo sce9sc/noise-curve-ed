@@ -1,4 +1,4 @@
-# noise-curve-secp
+# noise-curve-ed
 
 Ed25519 elliptic curve operations for [`noise-handshake`](https://github.com/chm-diederichs/noise-handshake)
 
@@ -17,7 +17,7 @@ const handshake = new Noise(pattern, initiator, staticKeyPair, { curve })
 `DHLEN` = 32
 `PKLEN` = 32
 `SKLEN` = 64
-`ALG` = 'secp256k1'
+`ALG` = 'Ed25519'
 
 #### `generateKeyPair([privKey])`
 
