@@ -3,9 +3,9 @@ const sodium = require('sodium-universal')
 const assert = require('nanoassert')
 const b4a = require('b4a')
 
-const DHLEN = sodium.crypto_scalarmult_ed25519_BYTES
-const PKLEN = sodium.crypto_scalarmult_ed25519_BYTES
-const SCALARLEN = sodium.crypto_scalarmult_ed25519_BYTES
+const DHLEN = sodium.crypto_scalarmult_BYTES
+const PKLEN = sodium.crypto_scalarmult_BYTES
+const SCALARLEN = sodium.crypto_scalarmult_BYTES
 const SKLEN = sodium.crypto_sign_SECRETKEYBYTES
 const ALG = 'Ed25519'
 
@@ -61,7 +61,7 @@ function dh (publicKey, { scalar, secretKey }) {
   const output = b4a.alloc(DHLEN)
 
   // we clamp if necessary above
-  sodium.crypto_scalarmult_ed25519_noclamp(
+  sodium.crypto_scalarmult(
     output,
     scalar,
     publicKey
