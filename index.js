@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-const sodium = require('sodium-universal')
+const sodium = require('sodium-javascript')
 const assert = require('nanoassert')
 const b4a = require('b4a')
 
